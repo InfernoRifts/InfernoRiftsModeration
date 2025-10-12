@@ -1,0 +1,7 @@
+name: InfernoRiftsModeration
+version: '1.0.0'
+main: com.demondev.infernoRiftsModeration.InfernoRiftsModeration
+api-version: '1.21'
+load: STARTUP
+authors: [ DemonDev ]
+description: Moderation tool plugin for InfernoRifts
