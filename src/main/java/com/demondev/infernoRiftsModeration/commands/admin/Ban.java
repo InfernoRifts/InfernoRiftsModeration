@@ -21,29 +21,28 @@ public class Ban implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        // Check permission
         if (!sender.hasPermission("modtools.ban")) {
             sender.sendMessage("You do not have permission to use this command.");
             return true;
         }
 
-        // Check usage
+        
         if (args.length < 1) {
             sender.sendMessage("Usage: /" + label + " <player> [duration] [reason]");
             return true;
         }
 
-        // Get the target offline player
-        @SuppressWarnings("deprecation") // For getOfflinePlayer(String)
+       
+        @SuppressWarnings("deprecation") 
         OfflinePlayer offlineTarget = Bukkit.getOfflinePlayer(args[0]);
         if (!offlineTarget.hasPlayedBefore() && !offlineTarget.isOnline()) {
             sender.sendMessage("Player '" + args[0] + "' has never joined the server.");
             return true;
         }
 
-        Player onlineTarget = offlineTarget.getPlayer(); // Null if offline
+        Player onlineTarget = offlineTarget.getPlayer(); 
 
-        // Parse duration (optional)
+    
         Duration banDuration = null;
         Instant expires = null;
         int reasonStartIndex = 1;
@@ -67,8 +66,6 @@ public class Ban implements CommandExecutor {
                 }
             }
         }
-
-        // Build the reason (optional)
         String reason = "Banned by staff.";
         if (args.length > reasonStartIndex) {
             StringBuilder reasonBuilder = new StringBuilder();
@@ -80,10 +77,10 @@ public class Ban implements CommandExecutor {
 
         String source = sender.getName();
 
-        // Ban by UUID (PROFILE)
+    
         Bukkit.getBanList(BanList.Type.PROFILE).addBan(offlineTarget.getUniqueId().toString(), reason, Date.from(expires), source);
 
-        // Ban by IP (if online)
+
 
         boolean ipBanned = false;
         String ip = null;
@@ -93,13 +90,13 @@ public class Ban implements CommandExecutor {
             ipBanned = true;
         }
 
-        // Kick if online
+        
         if (onlineTarget != null) {
             String kickMessage = "You are banned: " + reason + (banDuration != null ? " for " + formatDuration(banDuration) : " permanently.");
             onlineTarget.kickPlayer(kickMessage);
         }
 
-        // Notify the sender
+       
         String message = "Banned " + offlineTarget.getName() + " (UUID: " + offlineTarget.getUniqueId() + ")";
         if (ipBanned) {
             message += " and IP: " + ip;
@@ -107,7 +104,7 @@ public class Ban implements CommandExecutor {
         message += " for: " + reason + (banDuration != null ? " (Duration: " + formatDuration(banDuration) + ")" : " (Permanent)");
         sender.sendMessage(message);
 
-        // Log to console
+       
         Bukkit.getLogger().info(source + " banned " + offlineTarget.getName() + " for: " + reason);
 
         return true;
