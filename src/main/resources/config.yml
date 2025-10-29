@@ -1,0 +1,6 @@
+# IR MODTOOLS
+
+Plugin:
+  Prefix: '&c&lSTAFF '
+  Database:
+    # Types: H2, MySQL
