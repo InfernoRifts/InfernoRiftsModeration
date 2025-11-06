@@ -20,7 +20,7 @@ Guis:
           - '&7'
         Item: 'BARRIER'
         Enchants:
-          - 'GLOW:1'
+          - 'LUCK:1'
         Slot: '15'
       '1':
         Name: '&cBan'
@@ -30,7 +30,7 @@ Guis:
           - '&7'
         Item: 'GREEN_WOOL'
         Enchants:
-          - 'GLOW:1'
+          - 'LUCK:1'
         Slot: '11'
       '2':
         Name: '&c%player_name%'

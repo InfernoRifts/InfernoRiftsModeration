@@ -2,8 +2,10 @@ package com.demondev.infernoRiftsModeration.utils;
 
 import com.demondev.infernoRiftsModeration.InfernoRiftsModeration;
 import org.bukkit.*;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -73,6 +75,8 @@ public class MenuUtils {
         ItemStack ban = new ItemStack(Material.LIME_CONCRETE, 1);
         ItemMeta ban_meta = ban.getItemMeta();
         ban_meta.setDisplayName(ChatColor.GREEN + "Ban");
+        ban_meta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
+        ban_meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         ban.setItemMeta(ban_meta);
         confirmBanMenu.setItem(11, ban);
 
@@ -82,6 +86,8 @@ public class MenuUtils {
             OfflinePlayer offline = Bukkit.getOfflinePlayer(whoToBan.getPlayer().getUniqueId());
             meta.setOwningPlayer(offline);
             meta.setDisplayName(ChatColor.YELLOW + "" + whoToBan);
+            meta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
+            meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
             head.setItemMeta(meta);
         }
         confirmBanMenu.setItem(13, head);
@@ -89,6 +95,8 @@ public class MenuUtils {
         ItemStack cancel = new ItemStack(Material.BARRIER, 1);
         ItemMeta cancel_meta = cancel.getItemMeta();
         cancel_meta.setDisplayName(ChatColor.RED + "Cancel");
+        cancel_meta.addEnchant(Enchantment.LUCK_OF_THE_SEA, 1, true);
+        cancel_meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         cancel.setItemMeta(cancel_meta);
         confirmBanMenu.setItem(15, cancel);
 
