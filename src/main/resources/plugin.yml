@@ -8,4 +8,17 @@ description: Moderation tool plugin for InfernoRifts
 commands:
   bangui:
     description: Opens the ban GUI
+  modtools:
+    description: Main moderation tools command.
+    usage: /<command> <subcommand> [args]
+    permission: modtools.use  # Optional base permission if needed
+    permission-message: You do not have permission to use this command.
+permissions:
+  modtools.kick:
+    description: Allows kicking players via /modtools kick.
+    default: op
+  modtools.ban:
+    description: Allows Banning player via /modtools ban.
+    default: op
+
 
