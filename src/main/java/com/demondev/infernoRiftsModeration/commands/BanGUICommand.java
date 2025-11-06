@@ -23,7 +23,6 @@ public class BanGUICommand implements CommandExecutor {
 
         }
 
-
         return true;
     }
 }

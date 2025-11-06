@@ -25,7 +25,17 @@ public class MenuUtils {
         Inventory bangui = Bukkit.createInventory(player, 45, ChatColor.BLUE + "Player List");
 
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
-            
+
+            ItemStack filler = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
+            ItemMeta fillermeta = filler.getItemMeta();
+            fillermeta.setDisplayName(ChatColor.GRAY + "");
+            filler.setItemMeta(fillermeta);
+            for(int i = 0; i < bangui.getSize(); i++){
+                if (bangui.getItem(i) == null || bangui.getItem(i).getType() == Material.AIR){
+                    bangui.setItem(i, filler);
+                }
+            }
+
             for (Player p : Bukkit.getOnlinePlayers()) {
                 ItemStack head = new ItemStack(Material.PLAYER_HEAD);
                 SkullMeta meta = (SkullMeta) head.getItemMeta();
@@ -47,15 +57,24 @@ public class MenuUtils {
         }, 2L);
     }
 
-    public static void openConfirmBanMenu(Player p, Player whoToBan){
-        Inventory confirmBanMenu = Bukkit.createInventory(p,9,ChatColor.RED + "Are You sure want to ban this player?");
+    public void openConfirmBanMenu(Player p, Player whoToBan){
+        Inventory confirmBanMenu = Bukkit.createInventory(p,27,ChatColor.RED + "Are You sure want to ban this player?");
 
+        ItemStack filler = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
+        ItemMeta fillermeta = filler.getItemMeta();
+        fillermeta.setDisplayName(ChatColor.GRAY + "");
+        filler.setItemMeta(fillermeta);
+        for(int i = 0; i < confirmBanMenu.getSize(); i++){
+            if (confirmBanMenu.getItem(i) == null || confirmBanMenu.getItem(i).getType() == Material.AIR){
+                confirmBanMenu.setItem(i, filler);
+            }
+        }
 
         ItemStack ban = new ItemStack(Material.LIME_CONCRETE, 1);
         ItemMeta ban_meta = ban.getItemMeta();
         ban_meta.setDisplayName(ChatColor.GREEN + "Ban");
         ban.setItemMeta(ban_meta);
-        confirmBanMenu.setItem(3, ban);
+        confirmBanMenu.setItem(11, ban);
 
         ItemStack head = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta meta = (SkullMeta) head.getItemMeta();
@@ -65,16 +84,18 @@ public class MenuUtils {
             meta.setDisplayName(ChatColor.YELLOW + "" + whoToBan);
             head.setItemMeta(meta);
         }
-        confirmBanMenu.setItem(4, head);
+        confirmBanMenu.setItem(13, head);
 
         ItemStack cancel = new ItemStack(Material.BARRIER, 1);
         ItemMeta cancel_meta = cancel.getItemMeta();
         cancel_meta.setDisplayName(ChatColor.RED + "Cancel");
         cancel.setItemMeta(cancel_meta);
-        confirmBanMenu.setItem(5, cancel);
+        confirmBanMenu.setItem(15, cancel);
 
         p.openInventory(confirmBanMenu);
 
     }
+
+
 
 }

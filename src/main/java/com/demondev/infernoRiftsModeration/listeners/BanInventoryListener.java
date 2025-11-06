@@ -24,24 +24,37 @@ public class BanInventoryListener implements Listener {
 
         if (e.getView().getTitle().equalsIgnoreCase(ChatColor.BLUE + "Player List")){
 
+            e.setCancelled(true);
+
             if (e.getCurrentItem().getType() == Material.PLAYER_HEAD){
 
                 Player whoToBan = p.getServer().getPlayerExact(ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName()));
 
-                MenuUtils.openConfirmBanMenu(p, whoToBan);
+                plugin.menuUtils.openConfirmBanMenu(p, whoToBan);
 
             }
+
+
+
         }else if (e.getView().getTitle().equalsIgnoreCase(ChatColor.RED + "Are You sure want to ban this player?")){
 
+            e.setCancelled(true);
+
             if (e.getCurrentItem().getType() == Material.BARRIER){
+
                 plugin.menuUtils.openBanMenu(p);
+
           }else if(e.getCurrentItem().getType() == Material.LIME_CONCRETE){
+
                 String name = ChatColor.stripColor(e.getClickedInventory().getItem(4).getItemMeta().getDisplayName());
+
                 p.getServer().getBanList(BanList.Type.PROFILE).addBan(name, "Admin decided", null, null);
+
                 p.sendMessage(ChatColor.GREEN + "Banned Player");
+
             }
+
         }
-        e.setCancelled(true);
 
     }
 

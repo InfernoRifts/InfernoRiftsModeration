@@ -4,3 +4,40 @@ Plugin:
   Prefix: '&c&lSTAFF '
   Database:
     # Types: H2, MySQL
+
+
+Guis:
+  BanGUI:
+    DisplayName: '&cPLAYER LIST'
+    Size: 27
+    Filler: 'GRAY_STAINED_GLASS_PANE'
+    Buttons:
+      '0':
+        Name: '&cCancel'
+        Lore:
+          - '&7'
+          - '&cGo Back.'
+          - '&7'
+        Item: 'BARRIER'
+        Enchants:
+          - 'GLOW:1'
+        Slot: '15'
+      '1':
+        Name: '&cBan'
+        Lore:
+          - '&7'
+          - '&cBan this user.'
+          - '&7'
+        Item: 'GREEN_WOOL'
+        Enchants:
+          - 'GLOW:1'
+        Slot: '11'
+      '2':
+        Name: '&c%player_name%'
+        Lore:
+          - '&7Currently viewing this user.'
+          - '&7Check they are correct before banning.'
+        Item: 'PLAYER_HEAD'
+        Enchants:
+          - ''
+        Slot: '13'
